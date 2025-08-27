@@ -1,0 +1,7 @@
+flask
+sqlalchemy
+flask_sqlalchemy
+pillow
+colorthief
+python-slugify
+gunicorn

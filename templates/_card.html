@@ -1,0 +1,23 @@
+<article class="card fancy" data-open-modal hx-get="{{ url_for('recipe', slug=img.slug) }}" hx-target="#modal-body"
+    hx-swap="innerHTML">
+    <figure class="thumb">
+        <img src="{{ url_for('static', filename='images/' + img.filename) }}" alt="{{ img.title }}" loading="lazy" />
+        <span class="shine"></span>
+
+        <!-- Title only over the image -->
+        <figcaption class="overlay overlay-title-only">
+            <h3 class="title clamp-2">{{ img.title }}</h3>
+        </figcaption>
+
+        <div class="ring"></div>
+    </figure>
+
+    <footer class="meta-row">
+        <div class="pills">
+            {% for t in img.tags[:4] %}
+            <a hx-get="/?tag={{ t.slug }}" hx-target="#grid" class="pill">#{{ t.name }}</a>
+            {% endfor %}
+        </div>
+        <button class="like" data-id="{{ img.id }}">❤️ <span>{{ img.likes or 0 }}</span></button>
+    </footer>
+</article>

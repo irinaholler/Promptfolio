@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Promptfolio</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <script src="https://unpkg.com/htmx.org@1.9.12"></script>
+</head>
+
+<body>
+    <header class="shell header">
+        <!-- Animated wordmark -->
+        <a class="logo" href="/">
+            <svg viewBox="0 0 520 80" class="logo-svg" aria-label="Promptfolio">
+                <text x="0" y="60" class="stroke">Promptfolio</text>
+                <text x="0" y="60" class="fill">Promptfolio</text>
+
+                <linearGradient id="logoGrad" x1="0" x2="1" y1="0" y2="0">
+                    <stop offset="0%" stop-color="#8fbfe0" />
+                    <stop offset="50%" stop-color="#c8b37c" />
+                    <stop offset="100%" stop-color="#c9839b" />
+                </linearGradient>
+            </svg>
+        </a>
+
+        <!-- Fancy search (expands + glass) -->
+        <form class="search" method="get" hx-get="/" hx-target="#grid" hx-push-url="true"
+            hx-trigger="submit, keyup changed delay:350ms from:#q">
+
+            <span class="icon">⌘K</span>
+
+            <input id="q" name="q" type="search" placeholder="Search title, prompt, tags…" autocomplete="off" />
+
+            <!-- hidden real submit so Enter works everywhere -->
+            <button type="submit" class="sr-only" aria-hidden="true" tabindex="-1">Search</button>
+
+            <button type="button" id="voice" title="Voice search">🎤</button>
+        </form>
+
+        <button class="btn-shuffle" hx-get="/?shuffle=1" hx-target="#grid" hx-push-url="true"
+            title="Shuffle (random order)">🔀 Shuffle</button>
+    </header>
+
+    <main class="shell">
+        <section id="grid">
+            {% block grid %}{% endblock %}
+        </section>
+    </main>
+
+    <!-- Modal (popup) -->
+    <div id="modal" class="modal hidden" aria-hidden="true">
+        <div class="overlay" data-close-modal></div>
+        <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modal-title" tabindex="-1">
+            <button class="modal-close" data-close-modal aria-label="Close">✕</button>
+            <div id="modal-body"><!-- recipe content loads here --></div>
+        </div>
+    </div>
+
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+
+</html>

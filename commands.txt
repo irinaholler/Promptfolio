@@ -1,0 +1,12 @@
+python -m data.ingest
+# you should see:  ➕ Inserted: YourFileName.jpg   …  ✅ Done.
+
+
+python - <<'PY'
+from app import app, Image
+with app.app_context():
+    print([(i.id, i.filename) for i in Image.query.order_by(Image.id.desc()).limit(5)])
+PY
+
+
+python -m flask run

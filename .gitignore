@@ -1,0 +1,29 @@
+# OS / IDE
+.DS_Store
+.vscode/
+.idea/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+.env
+
+# App artifacts
+instance/
+gallery.db
+
+# HTMX swap cache (if any)
+*.swp
+
+# Images (choose ONE of the two blocks below)
+
+# (A) Track images normally (simple; repo may get big):
+# (do nothing here)
+
+# (B) OR track large images with Git LFS (recommended if many/large):
+# Uncomment these after running `git lfs track` below
+#*.jpg
+#*.jpeg
+#*.png
+#*.webp

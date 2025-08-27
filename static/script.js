@@ -1,0 +1,169 @@
+/* ------------------ UTIL ------------------ */
+const $ = (sel, root = document) => root.querySelector(sel);
+
+/* ------------------ LIKE + COPY ------------------ */
+document.addEventListener("click", async (e) => {
+    // Like button (stop bubbling so the card doesn't open the modal)
+    const likeBtn = e.target.closest(".like");
+    if (likeBtn) {
+        e.stopPropagation();
+        const id = likeBtn.dataset.id;
+        const key = "liked-" + id;
+        if (localStorage.getItem(key)) return;
+        try {
+            const res = await fetch(`/like/${id}`, { method: "POST" });
+            const data = await res.json();
+            likeBtn.querySelector("span").textContent = data.likes;
+            localStorage.setItem(key, "1");
+            // subtle pulse
+            likeBtn.classList.add("liked");
+            setTimeout(() => likeBtn.classList.remove("liked"), 250);
+        } catch (err) {
+            console.error("Like failed", err);
+        }
+        return;
+    }
+
+    // Copy prompt
+    if (e.target.classList.contains("copy")) {
+        e.stopPropagation();
+        const txt = e.target.dataset.text || "";
+        navigator.clipboard.writeText(txt);
+        e.target.textContent = "Copied ✓";
+        setTimeout(() => (e.target.textContent = "Copy prompt"), 1200);
+    }
+});
+
+/* ------------------ VOICE SEARCH (Chrome/Edge) ------------------ */
+// simple voice search (Chrome/Edge)
+const mic = document.getElementById("voice");
+if (mic && "webkitSpeechRecognition" in window) {
+    const rec = new webkitSpeechRecognition();
+    rec.lang = "en-US"; rec.interimResults = false;
+    mic.onclick = () => rec.start();
+    rec.onresult = (ev) => {
+        const query = ev.results[0][0].transcript;
+        const form = mic.closest("form");
+        const input = form.querySelector("input[type=search]");
+        input.value = query;
+        // Proper submit so HTMX sees it everywhere (Safari friendly)
+        if (form.requestSubmit) form.requestSubmit();
+        else form.dispatchEvent(new Event("submit", { bubbles: true }));
+    };
+}
+
+/* ------------------ REVEAL ON SCROLL (Safari-safe) ------------------ */
+let io;
+function attachCardObservers() {
+    const cards = document.querySelectorAll(".card");
+    if ("IntersectionObserver" in window) {
+        if (!io) {
+            io = new IntersectionObserver(
+                (entries) => {
+                    entries.forEach((ent) => {
+                        if (ent.isIntersecting) {
+                            ent.target.classList.add("reveal");
+                            io.unobserve(ent.target);
+                        }
+                    });
+                },
+                { rootMargin: "0px 0px -10% 0px" }
+            );
+        }
+        cards.forEach((c) => io.observe(c));
+    }
+
+    // Force visible to avoid Safari column/observer glitches
+    requestAnimationFrame(() => cards.forEach((c) => c.classList.add("reveal")));
+}
+window.addEventListener("DOMContentLoaded", attachCardObservers);
+window.addEventListener("load", attachCardObservers);
+document.body.addEventListener("htmx:afterSwap", (e) => {
+    if (e.target && e.target.id === "grid") attachCardObservers();
+});
+
+/* ------------------ SEARCH SHORTCUT ------------------ */
+document.addEventListener("keydown", (e) => {
+    if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
+        e.preventDefault();
+        const q = document.getElementById("q");
+        if (q) {
+            q.focus();
+            q.select();
+        }
+    }
+});
+
+/* ------------------ MODAL ------------------ */
+const modal = document.getElementById("modal");
+function openModal() {
+    modal.classList.remove("hidden");
+    document.documentElement.style.overflow = "hidden";
+}
+function closeModal() {
+    modal.classList.add("hidden");
+    document.documentElement.style.overflow = "";
+}
+
+// Open modal ONLY when clicking the card image/overlay (not tags/likes)
+document.addEventListener("click", (e) => {
+    // ignore clicks on tag chips or links inside meta
+    if (e.target.closest(".pill, .pills, .meta-row a, .like")) return;
+
+    const card = e.target.closest("[data-open-modal]");
+    if (card) {
+        openModal(); // HTMX will load #modal-body
+    }
+
+    // close on overlay / close button
+    if (e.target.matches("[data-close-modal]")) {
+        closeModal();
+    }
+});
+
+// Close with Escape
+document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && !modal.classList.contains("hidden")) closeModal();
+});
+
+// When recipe content arrives, make prompt collapsed by default and focus dialog
+document.body.addEventListener("htmx:afterSwap", (ev) => {
+    if (ev.target.id === "modal-body") {
+        const p = document.querySelector("#prompt-block");
+        if (p) p.classList.add("collapsed");
+        const card = document.querySelector(".modal-card");
+        if (card) card.focus({ preventScroll: true });
+    }
+});
+
+// Prompt show more/less (no scrollbar)
+document.addEventListener("click", (e) => {
+    const t = e.target.closest(".toggle");
+    if (!t) return;
+    const sel = t.getAttribute("data-toggle");
+    const el = document.querySelector(sel);
+    if (!el) return;
+    const collapsed = el.classList.toggle("collapsed");
+    t.textContent = collapsed
+        ? t.getAttribute("data-collapsed-text") || "Show more"
+        : t.getAttribute("data-expanded-text") || "Show less";
+});
+
+/* ------------------ IMAGE ZOOM IN MODAL ------------------ */
+document.addEventListener("click", (e) => {
+    const img = e.target.closest(".hero-img");
+    if (!img) return;
+    img.classList.toggle("zoomed");
+});
+
+/* ------------------ SHUFFLE (R key) ------------------ */
+document.addEventListener("keydown", (e) => {
+    if (e.key.toLowerCase() === "r" && document.activeElement.tagName !== "INPUT") {
+        if (window.htmx) {
+            htmx.ajax("GET", "/?shuffle=1&_=" + Date.now(), "#grid");
+        } else {
+            // fallback: full reload
+            location.href = "/?shuffle=1&_=" + Date.now();
+        }
+    }
+});

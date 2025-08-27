@@ -1,0 +1,30 @@
+<div class="modal-grid">
+    <figure class="hero">
+        <img src="{{ url_for('static', filename='images/' + img.filename) }}" alt="{{ img.title }}" class="hero-img" />
+    </figure>
+
+    <div class="panel modal-panel">
+        <h2 id="modal-title">{{ img.title }}</h2>
+        <p class="dim">
+            {{ img.model or '—' }} • seed {{ img.seed or '—' }} • {{ img.width }}×{{ img.height }} • {{ img.preset or
+            '—' }}
+        </p>
+
+        <div class="prompt collapsed" id="prompt-block">
+            {{ img.prompt }}
+        </div>
+        <div class="row-actions">
+            <button class="copy" data-text="{{ img.prompt|e }}">Copy prompt</button>
+            <button class="toggle" data-toggle="#prompt-block" data-collapsed-text="Show more"
+                data-expanded-text="Show less">Show more</button>
+        </div>
+
+        {% if img.tags %}
+        <div class="pills modal-pills">
+            {% for t in img.tags %}
+            <a hx-get="/?tag={{ t.slug }}" hx-target="#grid" class="pill">#{{ t.name }}</a>
+            {% endfor %}
+        </div>
+        {% endif %}
+    </div>
+</div>
