@@ -1,7 +1,7 @@
-flask
-sqlalchemy
-flask_sqlalchemy
-pillow
-colorthief
-python-slugify
-gunicorn
+Flask==3.0.3
+Flask-SQLAlchemy==3.1.1
+SQLAlchemy==2.0.32
+python-slugify==8.0.4
+gunicorn==21.2.0
+Pillow==10.4.0
+colorthief==0.2.1

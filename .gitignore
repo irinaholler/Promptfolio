@@ -27,3 +27,6 @@ gallery.db
 #*.jpeg
 #*.png
 #*.webp
+
+gallery.db
+instance/

@@ -1,12 +1,10 @@
 import os, json
 from flask import Flask, render_template, request, jsonify
+from flask import abort
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import Table, Column, Integer, ForeignKey, or_, func
 from sqlalchemy.orm import relationship
 from slugify import slugify
-from PIL import Image as PILImage
-from colorthief import ColorThief
-from flask import abort
 
 HOME = os.environ.get("HOME", "/home")           # Azure writable root
 DATA_DIR = os.path.join(HOME, "data")            # e.g., /home/data
@@ -110,6 +108,22 @@ def like(image_id):
     return jsonify({"likes": img.likes})
 
 # --- One-time ingest route to build DB on the server ---
+def _open_image_size(path):
+    try:
+        from PIL import Image as PILImage
+        with PILImage.open(path) as im:
+            return im.size
+    except Exception:
+        return (0, 0)
+
+def _extract_palette(path):
+    try:
+        from colorthief import ColorThief
+        ct = ColorThief(path)
+        return ["#%02x%02x%02x" % tuple(c) for c in ct.get_palette(color_count=5)]
+    except Exception:
+        return []
+
 def _ingest_run():
     images_dir = os.path.join(basedir, "static", "images")
     meta_path  = os.path.join(basedir, "data", "meta.json")
@@ -125,12 +139,12 @@ def _ingest_run():
 
         # size + palette (best-effort)
         try:
-            w, h = PILImage.open(full).size
+            w, h = _open_image_size(full)
         except Exception:
             continue
         try:
             ct = ColorThief(full)
-            palette = ["#%02x%02x%02x" % tuple(c) for c in ct.get_palette(color_count=5)]
+            palette = _extract_palette(full)
         except Exception:
             palette = []
 
