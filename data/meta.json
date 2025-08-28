@@ -314,5 +314,125 @@
       "ultra-realistic",
       "vertical"
     ]
+  },
+  "ChatGPT Ari_01.png": {
+    "title": "Cosmo Coffee Break",
+    "prompt": "Vertical, photo-realistic cinematic scene on grand European stone steps at midday. A seated astronaut in a white EVA suit rests mid-stair, reflective visor catching the sky. At the astronaut’s left sits a happy yellow Labrador. To the right, a wooden sandwich board leans on a step with crisp, correctly spelled, bold black text: “LIFE IS TOO SHORT TO BE NORMAL, DRINK THE COFFEE”. Tall vintage street lamps frame the stairwell; classical sandstone buildings rise on both sides; bright blue sky with small cotton clouds. Add a takeaway coffee cup on a lower step. Warm natural light, soft contrast, shallow depth of field, ultra-detailed textures (fabric creases, stone, metal trims), clean LinkedIn-friendly grade.",
+    "model": "Leonardo Lucid Realism",
+    "seed": "3129857312",
+    "preset": "Cinematic",
+    "tags": [
+      "astronaut",
+      "dog",
+      "labrador",
+      "street",
+      "european-architecture",
+      "stairs",
+      "signboard",
+      "quote",
+      "coffee",
+      "blue-sky",
+      "photoreal",
+      "cinematic",
+      "humor",
+      "surreal",
+      "vertical"
+    ]
+  },
+  "ChatGPT_Mona_Rocker_Corey.png": {
+    "title": "Mona Goes Metal",
+    "prompt": "Vertical, museum-grade reinterpretation of Leonardo’s Mona Lisa in a warm Renaissance oil style. She wears a black leather jacket and a band tee that reads “COREY TAYLOR” in bold, clean lettering (spelled exactly). Both hands are raised doing the devil-horns gesture; colorful full-sleeve tattoos, rings and bangles visible. Keep Mona Lisa’s classic face with a mischievous smirk; soft Tuscan background retained. The painting sits inside an ornate gold gallery frame on a wall with warm museum lighting and subtle aged-varnish texture. Painterly brushstroke surface but crisp details on jacket, tattoos and tee print. High-res, witty mashup, photoreal-painterly fusion.",
+    "model": "Leonardo Lucid Realism",
+    "seed": "3418801123",
+    "preset": "Portrait Classic",
+    "tags": [
+      "mona-lisa",
+      "parody",
+      "rock",
+      "corey-taylor",
+      "tattoos",
+      "leather",
+      "gold-frame",
+      "museum",
+      "renaissance",
+      "oil-painting",
+      "humor",
+      "mashup",
+      "vertical"
+    ]
+  },
+  "ChatGPT Image CT_02.png": {
+    "title": "Tour Fuel Triptych",
+    "prompt": "Vertical three-panel cinematic photo sequence from a Corey Taylor rock concert. A tattooed frontman crouches at the edge of the stage, sipping from a matte paper coffee cup, then reacting with a playful grimace. Low-angle close up, teal/cyan and warm red stage lighting, rim light and haze in the air. Background shows roof trusses and spots in soft bokeh. Editorial live-music photography vibe: sharp subject, creamy background, slight ISO grain, sweaty skin sheen, believable textures and clothing. 85mm look, f/1.8 depth, high dynamic range, no logos.",
+    "model": "Leonardo Kino XL",
+    "seed": "412907744",
+    "preset": "Cinematic",
+    "tags": [
+      "concert",
+      "coffee",
+      "stage",
+      "corey-taylor",
+      "rock",
+      "cup",
+      "triptych",
+      "low-angle",
+      "cyan-red",
+      "tattoos",
+      "bokeh",
+      "haze",
+      "editorial",
+      "vertical"
+    ]
+  },
+  "ChatGPT_coffee_05.png": {
+    "title": "Neural Espresso",
+    "prompt": "Vertical cinematic scene of a weathered winged reaper statue holding a scythe in a European city square. The stone head is open at the crown; a small, cute brain character stands up inside the cavity, smiling while lifting a tiny cappuccino cup with delicate latte art. Gentle steam wisps curl in the cool air. Realistic sandstone texture with pores, patina, and chisel marks; soft overcast light; shallow depth of field that keeps the statue crisp and the street architecture softly blurred. Warm, sepia-leaning grade, high detail, photoreal statue surface, humorous surreal contrast.",
+    "model": "Leonardo Lucid Realism",
+    "seed": "570421138",
+    "preset": "Cinematic",
+    "tags": [
+      "statue",
+      "reaper",
+      "angel",
+      "scythe",
+      "brain",
+      "coffee",
+      "cappuccino",
+      "steam",
+      "sandstone",
+      "sepia",
+      "surreal",
+      "humor",
+      "city-square",
+      "mythology",
+      "vertical",
+      "photoreal"
+    ]
+  },
+  "ChatGPT Neon Commit.png": {
+    "title": "Neon Commit",
+    "prompt": "Vertical, cinematic workspace scene in a brick-loft studio at golden hour. Close view of a laptop with code on screen as holographic neon code ribbons float from the display, curving through warm window light. Hands with glossy purple nails type on the keyboard. A mustard ceramic cup with cappuccino and a treble-clef style latte art sits on the wooden desk; studio headphones rest nearby. Soft bokeh, realistic textures (brick, wood, metal keys), gentle dust motes in the sunbeam. Posters for Foo Fighters and Alice in Chains blur on the wall. High detail, photoreal, warm color grade, shallow depth of field.",
+    "model": "Leonardo Flux Dev",
+    "seed": "715204312",
+    "preset": "Cinematic Workspace",
+    "tags": [
+      "programmer",
+      "code",
+      "laptop",
+      "hologram",
+      "neon",
+      "cappuccino",
+      "latte-art",
+      "headphones",
+      "brick-wall",
+      "sunlight",
+      "posters",
+      "music",
+      "studio",
+      "purple-nails",
+      "warm",
+      "vertical",
+      "photoreal"
+    ]
   }
 }
