@@ -107,6 +107,10 @@ def like(image_id):
     db.session.commit()
     return jsonify({"likes": img.likes})
 
+@app.route("/_health")
+def _health():
+    return "ok"
+
 # --- One-time ingest route to build DB on the server ---
 def _open_image_size(path):
     try:
@@ -115,6 +119,14 @@ def _open_image_size(path):
             return im.size
     except Exception:
         return (0, 0)
+
+def _extract_palette(path):
+    try:
+        from colorthief import ColorThief
+        ct = ColorThief(path)
+        return ["#%02x%02x%02x" % tuple(c) for c in ct.get_palette(color_count=5)]
+    except Exception:
+        return []
 
 def _extract_palette(path):
     try:
