@@ -4,6 +4,9 @@ from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import Table, Column, Integer, ForeignKey, or_, func
 from sqlalchemy.orm import relationship
 from slugify import slugify
+from PIL import Image as PILImage
+from colorthief import ColorThief
+from flask import abort
 
 HOME = os.environ.get("HOME", "/home")           # Azure writable root
 DATA_DIR = os.path.join(HOME, "data")            # e.g., /home/data
@@ -14,7 +17,7 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 DB_FILE = os.environ.get("DB_FILE") or os.path.join(basedir, "gallery.db")   # /home/data/gallery.db
 
 app = Flask(__name__)
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///" + os.path.join(basedir, "gallery.db")
+app.config["SQLALCHEMY_DATABASE_URI"] = f"sqlite:///{DB_FILE}"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 db = SQLAlchemy(app)
 
@@ -105,6 +108,87 @@ def like(image_id):
     img.likes = (img.likes or 0) + 1
     db.session.commit()
     return jsonify({"likes": img.likes})
+
+# --- One-time ingest route to build DB on the server ---
+def _ingest_run():
+    images_dir = os.path.join(basedir, "static", "images")
+    meta_path  = os.path.join(basedir, "data", "meta.json")
+    meta = {}
+    if os.path.exists(meta_path):
+        meta = json.load(open(meta_path, "r", encoding="utf-8"))
+
+    added = updated = 0
+    for fname in os.listdir(images_dir):
+        if not fname.lower().endswith((".png", ".jpg", ".jpeg", ".webp")):
+            continue
+        full = os.path.join(images_dir, fname)
+
+        # size + palette (best-effort)
+        try:
+            w, h = PILImage.open(full).size
+        except Exception:
+            continue
+        try:
+            ct = ColorThief(full)
+            palette = ["#%02x%02x%02x" % tuple(c) for c in ct.get_palette(color_count=5)]
+        except Exception:
+            palette = []
+
+        m = meta.get(fname, {})
+        title   = m.get("title") or os.path.splitext(fname)[0].replace("_"," ").title()
+        prompt  = m.get("prompt","")
+        model   = m.get("model","")
+        seed    = str(m.get("seed",""))
+        preset  = m.get("preset","")
+        tag_list = m.get("tags", [])
+
+        rec = Image.query.filter_by(filename=fname).first()
+        if rec:
+            updated += 1
+            rec.title = title
+            rec.slug = slugify(title)[:180]
+            rec.prompt = prompt
+            rec.model = model
+            rec.seed = seed
+            rec.preset = preset
+            rec.width = w; rec.height = h
+            rec.palette = json.dumps(palette)
+            rec.tags.clear()
+        else:
+            added += 1
+            rec = Image(
+                slug=slugify(title)[:180],
+                title=title,
+                filename=fname,
+                prompt=prompt,
+                model=model,
+                seed=seed,
+                preset=preset,
+                width=w, height=h,
+                palette=json.dumps(palette),
+                likes=0
+            )
+            db.session.add(rec)
+
+        for t in tag_list:
+            tslug = slugify(t)
+            tag = Tag.query.filter_by(slug=tslug).first()
+            if not tag:
+                tag = Tag(name=t, slug=tslug)
+            rec.tags.append(tag)
+
+    db.session.commit()
+    return added, updated
+
+@app.route("/admin/ingest")
+def admin_ingest():
+    token = request.args.get("t")
+    expected = os.environ.get("ADMIN_TOKEN")
+    if not expected or token != expected:
+        return abort(403)
+    a, u = _ingest_run()
+    return f"OK — added {a}, updated {u}"
+
 
 with app.app_context():
     db.create_all()
