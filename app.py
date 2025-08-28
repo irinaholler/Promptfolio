@@ -11,7 +11,7 @@ os.makedirs(DATA_DIR, exist_ok=True)             # ensure it exists
 
 basedir = os.path.abspath(os.path.dirname(__file__))
 
-DB_FILE = os.path.join(DATA_DIR, "gallery.db")   # /home/data/gallery.db
+DB_FILE = os.environ.get("DB_FILE") or os.path.join(basedir, "gallery.db")   # /home/data/gallery.db
 
 app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///" + os.path.join(basedir, "gallery.db")
