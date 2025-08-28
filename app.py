@@ -5,6 +5,11 @@ from sqlalchemy import Table, Column, Integer, ForeignKey, or_, func
 from sqlalchemy.orm import relationship
 from slugify import slugify
 
+HOME = os.environ.get("HOME", "/home")           # Azure writable root
+DATA_DIR = os.path.join(HOME, "data")            # e.g., /home/data
+os.makedirs(DATA_DIR, exist_ok=True)             # ensure it exists
+DB_FILE = os.path.join(DATA_DIR, "gallery.db")   # /home/data/gallery.db
+
 basedir = os.path.abspath(os.path.dirname(__file__))
 
 app = Flask(__name__)
