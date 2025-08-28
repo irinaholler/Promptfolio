@@ -8,9 +8,10 @@ from slugify import slugify
 HOME = os.environ.get("HOME", "/home")           # Azure writable root
 DATA_DIR = os.path.join(HOME, "data")            # e.g., /home/data
 os.makedirs(DATA_DIR, exist_ok=True)             # ensure it exists
-DB_FILE = os.path.join(DATA_DIR, "gallery.db")   # /home/data/gallery.db
 
 basedir = os.path.abspath(os.path.dirname(__file__))
+
+DB_FILE = os.path.join(DATA_DIR, "gallery.db")   # /home/data/gallery.db
 
 app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///" + os.path.join(basedir, "gallery.db")
