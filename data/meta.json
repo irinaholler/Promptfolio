@@ -434,5 +434,61 @@
       "vertical",
       "photoreal"
     ]
+  },
+  "Flux_Dev_lady_concerts.jpg": {
+    "title": "Stadium Appeal",
+    "prompt": "A cinematic vertical photo-realistic image of an outdoor event scene in front of a stadium entrance. A light-skinned woman with vanilla blonde hair stands slightly far from the camera in full view, with visible legs. She wears a fitted black t-shirt and a short red skirt, and holds a large cardboard-style sign with both elegant hands. The sign clearly reads: 'I'm collecting money for concerts' (in bold, clean, handwritten lettering, no spelling errors). Above her, a large orange billboard dominates the upper third of the image with the white bold text: 'HELP THIS LADY'. The sky is bright blue with beautiful soft clouds, and the lighting is warm and natural, like early afternoon sun. The background is filled with a lively crowd of people going to a rock concert — dressed in dark clothes, band t-shirts, jeans, leather jackets, and boots. The stadium’s architecture is modern with visible white support beams and colorful concert banners.The woman's expression is confident and hopeful, and she wears large black-rimmed glasses. Color tones are vibrant but realistic with slightly soft contrast. The subject and billboard are in focus, with a shallow depth of field gently blurring the crowd to create depth.",
+    "model": "Leonardo Flux Dev",
+    "seed": "1905650570",
+    "preset": "Creative",
+    "tags": [
+      "concert",
+      "stadium",
+      "crowd",
+      "billboard",
+      "cardboard-sign",
+      "fundraiser",
+      "donation",
+      "woman",
+      "red-skirt",
+      "fan",
+      "gig",
+      "blue-sky",
+      "rock-music",
+      "banners",
+      "modern-architecture",
+      "photoreal",
+      "vertical",
+      "shallow-dof"
+    ]
+  },
+  "ChatGPT-lady_01.jpg": {
+    "title": "Stadium AppealSunlit Sips",
+    "prompt": "A vintage pin-up style illustration of a glamorous 1950s woman sitting elegantly on a balcony surrounded by blooming pink flowers. She wears a soft pink off-shoulder dress and has a classic retro hairstyle with waves and volume. She holds a white porcelain coffee cup with graceful fingers, gazing confidently toward the viewer with a slight smirk. The background features a bright blue sky with fluffy clouds, green hills, and a floral balcony railing. The illustration mimics the look of an old comic book or retro magazine, with warm colors, clean outlines, and subtle texture. At the top, a bold vintage-style caption reads: ‘I like to drink coffee and pretend I know what the fck is going on.",
+    "model": "ChatGPT Phoenix 0.9",
+    "seed": "7549226989",
+    "preset": "Bokeh",
+    "tags": [
+      "pin-up",
+      "illustration",
+      "1950s",
+      "retro",
+      "vintage",
+      "balcony",
+      "pink-dress",
+      "flowers",
+      "porcelain-cup",
+      "coffee",
+      "smirk",
+      "blue-sky",
+      "clouds",
+      "green-hills",
+      "comic-book-texture",
+      "magazine-style",
+      "warm-colors",
+      "caption-text",
+      "glamour",
+      "vertical"
+    ]
   }
 }
