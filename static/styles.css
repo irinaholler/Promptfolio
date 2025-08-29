@@ -19,9 +19,13 @@
 html,
 body {
   height: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
 }
 body {
   margin: 0;
+  overscroll-behavior-x: none;
+  touch-action: pan-y;
   color: var(--fg);
   background: radial-gradient(
       1200px 700px at 20% -10%,
@@ -49,6 +53,57 @@ body:before {
   max-width: 1366px;
   margin: auto;
   padding: 24px;
+  overflow-x: clip;
+}
+
+/* --- Floating action buttons --- */
+.fab {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  z-index: 60;
+  width: 46px;
+  height: 46px;
+  display: grid;
+  place-items: center;
+  border-radius: 999px;
+  border: 1px solid rgba(170, 190, 255, 0.25);
+  background: rgba(20, 25, 46, 0.58);
+  color: #eaf1ff;
+  backdrop-filter: blur(10px) saturate(120%);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.25s ease, transform 0.25s ease, filter 0.15s ease;
+  pointer-events: none;
+}
+.fab.show {
+  opacity: 1;
+  transform: none;
+  pointer-events: auto;
+}
+.fab:hover {
+  filter: brightness(1.1);
+}
+
+/* About pill */
+.about-pill {
+  position: fixed;
+  left: 16px;
+  bottom: 16px;
+  z-index: 60;
+  padding: 8px 12px;
+  font: 600 13px/1.1 Inter, ui-sans-serif;
+  border-radius: 999px;
+  cursor: pointer;
+  border: 1px solid rgba(170, 190, 255, 0.22);
+  background: rgba(20, 25, 46, 0.5);
+  color: #e9f1ff;
+  backdrop-filter: blur(8px);
+  transition: filter 0.15s ease, transform 0.15s ease;
+}
+.about-pill:hover {
+  filter: brightness(1.08);
 }
 
 /* ---------- Header ---------- */
@@ -194,6 +249,8 @@ input[type="search"] {
 
 /* Masonry grid — denser so more images fit */
 .grid {
+  margin-right: 0;
+  column-gap: 12px;
   columns: 4 260px;
   gap: 12px;
   -webkit-column-gap: 12px; /* explicit for Safari */
@@ -675,6 +732,23 @@ input[type="search"] {
 
 /* Large phones */
 @media (max-width: 700px) {
+  header {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .logo-svg {
+    width: clamp(220px, 56vw, 300px);
+  }
+  .search {
+    order: 2;
+    width: 100%;
+  }
+  .search input {
+    width: 100%;
+  }
+  .btn-shuffle {
+    display: none !important;
+  }
   .shell {
     padding: 18px;
   }
@@ -686,18 +760,16 @@ input[type="search"] {
     border-radius: 16px;
     margin-bottom: 10px;
   }
+  .modal .modal-card {
+    margin: 4vh auto;
+    padding: 14px;
+  }
   .pills {
     gap: 5px;
   }
   .pill {
     font-size: 10.5px;
     padding: 3px 7px;
-  }
-  .search {
-    width: 100%;
-  }
-  .search input {
-    width: 100%;
   }
 }
 
@@ -736,11 +808,5 @@ input[type="search"] {
   }
   .hero {
     max-height: 48svh;
-  }
-}
-@media (max-width: 700px) {
-  .modal .modal-card {
-    margin: 4vh auto;
-    padding: 14px;
   }
 }

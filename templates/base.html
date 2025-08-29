@@ -58,6 +58,30 @@
         </div>
     </div>
 
+    <button id="toTop" class="fab" aria-label="Back to top" title="Back to top">
+        <!-- up arrow -->
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+            <path d="M12 5l-7 7h4v7h6v-7h4l-7-7z" stroke="currentColor" stroke-width="1.6" fill="currentColor" />
+        </svg>
+    </button>
+
+    <!-- Optional: tiny About pill (bottom-left) -->
+    <button id="aboutBtn" class="about-pill" aria-haspopup="dialog" title="About">About</button>
+
+    <!-- About sheet (reuses your modal look) -->
+    <div id="aboutModal" class="modal hidden">
+        <div class="overlay" data-close-modal></div>
+        <div class="modal-card modal-panel" role="dialog" aria-modal="true" style="max-width:580px">
+            <button class="modal-close" data-close-modal>✕</button>
+            <h2>About this gallery</h2>
+            <p class="dim">
+                AI-generated images created by Irini. Prompts, seeds and models are shown per image.
+                Please ask before reusing the images commercially — inspiration is welcome, attribution appreciated. 💛
+            </p>
+            <p class="dim">Code: Flask + HTMX. Repo: <a href="https://github.com/irinaholler/Promptfolio"
+                    target="_blank" rel="noreferrer">Promptfolio</a>.</p>
+        </div>
+    </div>
 
     <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>

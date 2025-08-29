@@ -167,3 +167,44 @@ document.addEventListener("keydown", (e) => {
         }
     }
 });
+
+// --- Back to top FAB ---
+const toTop = document.getElementById('toTop');
+if (toTop) {
+    const onScroll = () => toTop.classList.toggle('show', window.scrollY > 320);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+    toTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+}
+
+// --- About pill opens a small modal ---
+const aboutBtn = document.getElementById('aboutBtn');
+const aboutModal = document.getElementById('aboutModal');
+if (aboutBtn && aboutModal) {
+    aboutBtn.addEventListener('click', () => {
+        aboutModal.classList.remove('hidden');
+        document.documentElement.style.overflow = 'hidden';
+    });
+    aboutModal.addEventListener('click', (e) => {
+        if (e.target.matches('[data-close-modal], .overlay')) {
+            aboutModal.classList.add('hidden');
+            document.documentElement.style.overflow = '';
+        }
+    });
+}
+
+// --- Search: clear (×) should reset the grid ---
+const searchBox = document.querySelector('input[type="search"]');
+if (searchBox) {
+    // Fires on Safari/iOS when the native clear (×) is tapped
+    searchBox.addEventListener('search', () => {
+        if (searchBox.value === '') {
+            // Reload grid with all images; keep shuffle default behavior
+            if (window.htmx) {
+                htmx.ajax('GET', '/?shuffle=1&_=' + Date.now(), '#grid');
+            } else {
+                window.location.assign('/?shuffle=1');
+            }
+        }
+    });
+}
