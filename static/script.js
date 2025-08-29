@@ -1,5 +1,6 @@
 /* ------------------ UTIL ------------------ */
 const $ = (sel, root = document) => root.querySelector(sel);
+document.documentElement.classList.add('js');
 
 /* ------------------ LIKE + COPY ------------------ */
 document.addEventListener("click", async (e) => {
@@ -35,18 +36,17 @@ document.addEventListener("click", async (e) => {
 });
 
 /* ------------------ VOICE SEARCH (Chrome/Edge) ------------------ */
-// simple voice search (Chrome/Edge)
 const mic = document.getElementById("voice");
 if (mic && "webkitSpeechRecognition" in window) {
     const rec = new webkitSpeechRecognition();
-    rec.lang = "en-US"; rec.interimResults = false;
+    rec.lang = "en-US";
+    rec.interimResults = false;
     mic.onclick = () => rec.start();
     rec.onresult = (ev) => {
         const query = ev.results[0][0].transcript;
         const form = mic.closest("form");
         const input = form.querySelector("input[type=search]");
         input.value = query;
-        // Proper submit so HTMX sees it everywhere (Safari friendly)
         if (form.requestSubmit) form.requestSubmit();
         else form.dispatchEvent(new Event("submit", { bubbles: true }));
     };
@@ -72,7 +72,6 @@ function attachCardObservers() {
         }
         cards.forEach((c) => io.observe(c));
     }
-
     // Force visible to avoid Safari column/observer glitches
     requestAnimationFrame(() => cards.forEach((c) => c.classList.add("reveal")));
 }
@@ -116,9 +115,7 @@ document.addEventListener("click", (e) => {
     }
 
     // close on overlay / close button
-    if (e.target.matches("[data-close-modal]")) {
-        closeModal();
-    }
+    if (e.target.matches("[data-close-modal]")) closeModal();
 });
 
 // Close with Escape
@@ -162,49 +159,99 @@ document.addEventListener("keydown", (e) => {
         if (window.htmx) {
             htmx.ajax("GET", "/?shuffle=1&_=" + Date.now(), "#grid");
         } else {
-            // fallback: full reload
             location.href = "/?shuffle=1&_=" + Date.now();
         }
     }
 });
 
-// --- Back to top FAB ---
-const toTop = document.getElementById('toTop');
-if (toTop) {
-    const onScroll = () => toTop.classList.toggle('show', window.scrollY > 320);
-    window.addEventListener('scroll', onScroll, { passive: true });
-    onScroll();
-    toTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
-}
-
-// --- About pill opens a small modal ---
-const aboutBtn = document.getElementById('aboutBtn');
-const aboutModal = document.getElementById('aboutModal');
+/* ------------------ ABOUT PILL ------------------ */
+const aboutBtn = document.getElementById("aboutBtn");
+const aboutModal = document.getElementById("aboutModal");
 if (aboutBtn && aboutModal) {
-    aboutBtn.addEventListener('click', () => {
-        aboutModal.classList.remove('hidden');
-        document.documentElement.style.overflow = 'hidden';
+    aboutBtn.addEventListener("click", () => {
+        aboutModal.classList.remove("hidden");
+        document.documentElement.style.overflow = "hidden";
     });
-    aboutModal.addEventListener('click', (e) => {
-        if (e.target.matches('[data-close-modal], .overlay')) {
-            aboutModal.classList.add('hidden');
-            document.documentElement.style.overflow = '';
+    aboutModal.addEventListener("click", (e) => {
+        if (e.target.matches("[data-close-modal], .overlay")) {
+            aboutModal.classList.add("hidden");
+            document.documentElement.style.overflow = "";
         }
     });
 }
 
-// --- Search: clear (×) should reset the grid ---
+/* ------------------ SEARCH: CLEAR (×) RESETS GRID ------------------ */
 const searchBox = document.querySelector('input[type="search"]');
 if (searchBox) {
     // Fires on Safari/iOS when the native clear (×) is tapped
-    searchBox.addEventListener('search', () => {
-        if (searchBox.value === '') {
-            // Reload grid with all images; keep shuffle default behavior
+    searchBox.addEventListener("search", () => {
+        if (searchBox.value === "") {
             if (window.htmx) {
-                htmx.ajax('GET', '/?shuffle=1&_=' + Date.now(), '#grid');
+                htmx.ajax("GET", "/?shuffle=1&_=" + Date.now(), "#grid");
             } else {
-                window.location.assign('/?shuffle=1');
+                window.location.assign("/?shuffle=1");
             }
         }
     });
 }
+
+/* ------------------ BACK TO TOP — final, robust ------------------ */
+/* ------------------ BACK TO TOP — scroll ALL scrollables ------------------ */
+(function () {
+    const btn = document.getElementById('toTop');
+    if (!btn) return;
+
+    // Make sure it's clickable/visible
+    btn.classList.add('show');
+
+    // The robust scroller: page + any scrollable panels
+    function scrollAllToTop() {
+        const roots = [
+            document.scrollingElement || document.documentElement,
+            document.body
+        ];
+
+        const panels = Array.from(document.querySelectorAll('*')).filter(el => {
+            // skip the button itself
+            if (el === btn) return false;
+            const cs = getComputedStyle(el);
+            const canScroll = /(auto|scroll|overlay)/.test(cs.overflowY);
+            return canScroll && el.scrollHeight > el.clientHeight;
+        });
+
+        const targets = [...new Set([...roots, ...panels])];
+
+        targets.forEach(el => {
+            try {
+                el.scrollTo({ top: 0, behavior: 'smooth' });
+            } catch {
+                el.scrollTop = 0;
+            }
+        });
+
+        // As a last resort, also ask the window to scroll
+        if ('scrollTo' in window) window.scrollTo({ top: 0, behavior: 'smooth' });
+        else window.scrollTo(0, 0);
+    }
+
+    // Click handler on the button
+    btn.addEventListener('click', e => {
+        e.preventDefault();
+        e.stopPropagation();
+        scrollAllToTop();
+    });
+
+    // Also catch any element that uses data-scroll-top (future-proof)
+    document.addEventListener('click', e => {
+        const t = e.target.closest('[data-scroll-top]');
+        if (!t) return;
+        e.preventDefault();
+        scrollAllToTop();
+    });
+
+    // Keep a gentle fade near the top
+    const soften = () => { btn.style.opacity = (window.scrollY < 40) ? '0.9' : '1'; };
+    soften();
+    window.addEventListener('scroll', soften, { passive: true });
+    window.addEventListener('resize', soften);
+})();

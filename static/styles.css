@@ -22,6 +22,9 @@ body {
   max-width: 100%;
   overflow-x: hidden;
 }
+html {
+  scroll-behavior: smooth;
+}
 body {
   margin: 0;
   overscroll-behavior-x: none;
@@ -57,6 +60,10 @@ body:before {
 }
 
 /* --- Floating action buttons --- */
+.fab#toTop {
+  right: max(16px, env(safe-area-inset-right));
+  bottom: calc(16px + env(safe-area-inset-bottom));
+}
 .fab {
   position: fixed;
   right: 16px;
@@ -68,19 +75,25 @@ body:before {
   place-items: center;
   border-radius: 999px;
   border: 1px solid rgba(170, 190, 255, 0.25);
-  background: rgba(20, 25, 46, 0.58);
+  background: rgba(6, 52, 237, 0.58);
   color: #eaf1ff;
   backdrop-filter: blur(10px) saturate(120%);
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
   opacity: 0;
   transform: translateY(10px);
   transition: opacity 0.25s ease, transform 0.25s ease, filter 0.15s ease;
-  pointer-events: none;
+  pointer-events: auto;
+  cursor: pointer;
 }
 .fab.show {
   opacity: 1;
   transform: none;
   pointer-events: auto;
+}
+.fab:not(.show) {
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(10px);
 }
 .fab:hover {
   filter: brightness(1.1);
@@ -267,9 +280,13 @@ input[type="search"] {
   -webkit-column-break-inside: avoid;
   page-break-inside: avoid; /* print/PDF safety */
   transform: translateY(10px);
-  opacity: 0;
+  opacity: 1;
   transition: transform 0.45s cubic-bezier(0.2, 0.7, 0.2, 1), opacity 0.6s ease,
     box-shadow 0.3s ease, border-color 0.3s ease;
+}
+/* When JS is confirmed, we can fade them in */
+.js .card {
+  opacity: 0;
 }
 .card.reveal {
   transform: none;
@@ -770,6 +787,10 @@ input[type="search"] {
   .pill {
     font-size: 10.5px;
     padding: 3px 7px;
+  }
+  .fab#toTop {
+    right: 12px;
+    bottom: 12px;
   }
 }
 
