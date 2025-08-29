@@ -10,3 +10,5 @@ PY
 
 
 python -m flask run
+
+https://promptfolio.azurewebsites.net/admin/ingest?t=YOUR_ADMIN_TOKEN
