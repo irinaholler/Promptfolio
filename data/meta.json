@@ -490,5 +490,87 @@
       "glamour",
       "vertical"
     ]
+  },
+  "Flux_Dev_warmly_lit_coffee.jpg": {
+    "title": "Copper Dawn Café",
+    "prompt": "A cinematic vertical shot. A warmly lit, weathered teal coffee hut tucked beneath moss-draped trees in a garden, its wooden façade softened by climbing ferns and vibrant orange marigolds. Golden lantern glow spills across a rustic cobblestone patio, where a matching teal table and chairs await two steaming mugs, all around some bushes of flowers. Gentle morning mist weaves through sun-dappled leaves, and a barista pours rich, amber coffee from a polished copper kettle—capturing a moment of serene magic in every hue.",
+    "model": "Leonardo Flux Dev",
+    "seed": "1848094854",
+    "preset": "Dynamic",
+    "tags": [
+      "coffee-hut",
+      "teal",
+      "lantern-glow",
+      "copper-kettle",
+      "barista",
+      "steaming-mugs",
+      "cobblestone-patio",
+      "ferns",
+      "marigolds",
+      "moss",
+      "garden",
+      "sun-dappled",
+      "morning-mist",
+      "rustic",
+      "cozy",
+      "warm-tones",
+      "cinematic",
+      "serene",
+      "magic-hour",
+      "vertical"
+    ]
+  },
+  "Flux_Dev_chocolate_cake.jpg": {
+    "title": "Copper Dawn Café",
+    "prompt": "Golden-hour moment, 1080 × 1920, cinematic vertical shot. A majestic, three-layer dark melting down chocolate delicious cake sits atop a carved ebony table in a moonlit fairy-tale hall. A single slice has been lifted, revealing rich, velvety ganache and feather-light chocolate sponge swirled in an elegant spiral. Black currants and glossy mulberries crown the top, their deep-purple sheen contrasting the cake’s matte finish. Delicate gold filigree crumbs sprinkle the edge, catching soft candlelight. In the background, towering stained-glass windows frame a misty enchanted forest, while floating lanterns drift through rose-etched arches, evoking an otherworldly realm of sweet wonder.",
+    "model": "Leonardo Flux Dev",
+    "seed": "1447271862",
+    "preset": "Dynamic",
+    "tags": [
+      "coffee-hut",
+      "teal",
+      "lantern-glow",
+      "copper-kettle",
+      "barista",
+      "steaming-mugs",
+      "cobblestone-patio",
+      "ferns",
+      "marigolds",
+      "moss",
+      "garden",
+      "sun-dappled",
+      "morning-mist",
+      "rustic",
+      "cozy",
+      "warm-tones",
+      "cinematic",
+      "serene",
+      "magic-hour",
+      "vertical"
+    ]
+  },
+  "Flux_Dev_chocolate_cake.jpg": {
+    "title": "Midnight Metal Stage Cake",
+    "prompt": "On a dimly lit rock stage, a three-tier matte-black fondant cake with glossy black ganache drips sits on a rugged road case, a strawberry covered in chocolate. Edible heavy-metal details: brushed-metal (edible) spikes and studs, thin sugar chains wrapping each tier, tiny fondant skulls, scattered sugar guitar picks, dark melting down chocolate and a crackled tempered-sugar lightning-bolt topper with silver-leaf edges. A single slice is lifted on a matte-black server, revealing deep cocoa sponge with dark velvet ganache layers. A single slice has been lifted, revealing rich, velvety ganache and feather-light chocolate sponge swirled in an elegant spiral. Soft stage lighting: warm tungsten key from stage left, cool cyan rim/backlights cutting through light haze so beams are visible; subtle bokeh of truss, amps, and cables in the background (no logos). Textures ultra-real: satin fondant, glossy drips, metallic sheen on edible hardware. Mood: bold, heavy-metal glamour yet elegant. Shallow depth (f/1.8, 85 mm look), high dynamic range, gentle film grain, cinematic color grade.",
+    "model": "Leonardo Flux Dev",
+    "seed": "1983862411",
+    "preset": "Dynamic",
+    "tags": [
+      "metal",
+      "rock",
+      "black-cake",
+      "ganache-drip",
+      "spikes",
+      "studs",
+      "chains",
+      "skulls",
+      "lightning-topper",
+      "stage-lights",
+      "haze",
+      "bokeh",
+      "photoreal",
+      "cinematic",
+      "vertical"
+    ]
   }
 }
