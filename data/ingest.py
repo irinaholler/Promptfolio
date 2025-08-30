@@ -1,4 +1,3 @@
-# data/ingest.py
 import os, sys, json
 from PIL import Image as PILImage
 from colorthief import ColorThief
