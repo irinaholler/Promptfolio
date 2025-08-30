@@ -210,6 +210,8 @@ def _ingest_run():
 def admin_ingest():
     token = request.args.get("t")
     expected = os.environ.get("ADMIN_TOKEN")
+    print("TOKEN RECEIVED:", token)
+    print("TOKEN EXPECTED:", expected)
     if not expected or token != expected:
         return abort(403)
     a, u = _ingest_run()
