@@ -1,4 +1,8 @@
+#Delete the database and regenerate (for local development only)
+
+rm -f data/promptfolio.db
 python -m data.ingest
+
 # you should see:  ➕ Inserted: YourFileName.jpg   …  ✅ Done.
 
 

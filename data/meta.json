@@ -521,25 +521,25 @@
     ]
   },
   "Flux_Dev_chocolate_cake.jpg": {
-    "title": "Copper Dawn Café",
-    "prompt": "Golden-hour moment, 1080 × 1920, cinematic vertical shot. A majestic, three-layer dark melting down chocolate delicious cake sits atop a carved ebony table in a moonlit fairy-tale hall. A single slice has been lifted, revealing rich, velvety ganache and feather-light chocolate sponge swirled in an elegant spiral. Black currants and glossy mulberries crown the top, their deep-purple sheen contrasting the cake’s matte finish. Delicate gold filigree crumbs sprinkle the edge, catching soft candlelight. In the background, towering stained-glass windows frame a misty enchanted forest, while floating lanterns drift through rose-etched arches, evoking an otherworldly realm of sweet wonder.",
+    "title": "Majestic melting cake",
+    "prompt": "Golden-hour moment, cinematic vertical shot. A majestic, three-layer dark melting down chocolate delicious cake sits atop a carved ebony table in a moonlit fairy-tale hall. A single slice has been lifted, revealing rich, velvety ganache and feather-light chocolate sponge swirled in an elegant spiral. Black currants and glossy mulberries crown the top, their deep-purple sheen contrasting the cake’s matte finish. Delicate gold filigree crumbs sprinkle the edge, catching soft candlelight. In the background, towering stained-glass windows frame a misty enchanted forest, while floating lanterns drift through rose-etched arches, evoking an otherworldly realm of sweet wonder.",
     "model": "Leonardo Flux Dev",
     "seed": "1447271862",
     "preset": "Dynamic",
     "tags": [
-      "coffee-hut",
-      "teal",
+      "chocolate",
+      "majestic",
       "lantern-glow",
-      "copper-kettle",
-      "barista",
-      "steaming-mugs",
-      "cobblestone-patio",
-      "ferns",
+      "candlelight",
+      "melting",
+      "elegant",
+      "moonlit",
+      "window",
       "marigolds",
       "moss",
       "garden",
-      "sun-dappled",
-      "morning-mist",
+      "cake",
+      "details",
       "rustic",
       "cozy",
       "warm-tones",
@@ -549,8 +549,8 @@
       "vertical"
     ]
   },
-  "Flux_Dev_cake_lit_rock_stage.jpg": {
-    "title": "Midnight Metal Stage Cake",
+  "Flux_Dev_cake_rock_stage.jpg": {
+    "title": "Metal Stage Cake",
     "prompt": "On a dimly lit rock stage, a three-tier matte-black fondant cake with glossy black ganache drips sits on a rugged road case, a strawberry covered in chocolate. Edible heavy-metal details: brushed-metal (edible) spikes and studs, thin sugar chains wrapping each tier, tiny fondant skulls, scattered sugar guitar picks, dark melting down chocolate and a crackled tempered-sugar lightning-bolt topper with silver-leaf edges. A single slice is lifted on a matte-black server, revealing deep cocoa sponge with dark velvet ganache layers. A single slice has been lifted, revealing rich, velvety ganache and feather-light chocolate sponge swirled in an elegant spiral. Soft stage lighting: warm tungsten key from stage left, cool cyan rim/backlights cutting through light haze so beams are visible; subtle bokeh of truss, amps, and cables in the background (no logos). Textures ultra-real: satin fondant, glossy drips, metallic sheen on edible hardware. Mood: bold, heavy-metal glamour yet elegant. Shallow depth (f/1.8, 85 mm look), high dynamic range, gentle film grain, cinematic color grade.",
     "model": "Leonardo Flux Dev",
     "seed": "1983862411",
@@ -567,10 +567,34 @@
       "lightning-topper",
       "stage-lights",
       "haze",
-      "bokeh",
+      "cake",
       "photoreal",
       "cinematic",
       "vertical"
+    ]
+  },
+  "ChatGPT Image CTG_02.png": {
+    "title": "Share a Sip with Corey",
+    "prompt": "Ultra-realistic close-up product photography. A cold red cola can sits next to a transparent glass stacked with glossy ice cubes. The can is covered in dew drops and condensation, with bold silver letters reading: 'Share a sip with COREY TAYLOR'. The background is a warmly lit bar with rows of blurred colorful liquor bottles, creating a cozy evening atmosphere. The wooden table reflects the light softly, and the ice shimmers with clarity. Bokeh effect in the background, with warm contrast and commercial lighting, like a high-end beverage ad.",
+    "model": "ChatGPT Flux Dev",
+    "seed": "4029809941",
+    "preset": "Photoreal Studio",
+    "tags": [
+      "corey-taylor",
+      "cola",
+      "soda-can",
+      "ice-glass",
+      "product-photography",
+      "drink",
+      "condensation",
+      "bar-scene",
+      "warm-light",
+      "bar",
+      "realistic",
+      "branding",
+      "vertical",
+      "close-up",
+      "photo"
     ]
   }
 }
