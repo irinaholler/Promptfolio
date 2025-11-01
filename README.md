@@ -219,7 +219,8 @@ Localhost
 
 # from your project root
 
-source venv/bin/activate # or .venv/bin/activate
+source venv/bin/activate
+
 python - <<'PY'
 from app import app, \_ingest_run
 with app.app_context():
