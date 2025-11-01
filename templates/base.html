@@ -5,18 +5,18 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Promptfolio</title>
+
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
-    <script src="https://unpkg.com/htmx.org@1.9.12"></script>
+    <script src="https://unpkg.com/htmx.org@1.9.12" defer></script>
 </head>
 
-<body>
+<body hx-boost="true">
     <header class="shell header">
-        <!-- Animated wordmark -->
-        <a class="logo" href="/">
-            <svg viewBox="0 0 520 80" class="logo-svg" aria-label="Promptfolio">
+        <!-- Wordmark -->
+        <a class="logo" href="{{ url_for('home') }}" aria-label="Promptfolio">
+            <svg viewBox="0 0 520 80" class="logo-svg">
                 <text x="0" y="60" class="stroke">Promptfolio</text>
                 <text x="0" y="60" class="fill">Promptfolio</text>
-
                 <linearGradient id="logoGrad" x1="0" x2="1" y1="0" y2="0">
                     <stop offset="0%" stop-color="#8fbfe0" />
                     <stop offset="50%" stop-color="#c8b37c" />
@@ -25,56 +25,50 @@
             </svg>
         </a>
 
-        <!-- Fancy search (expands + glass) -->
-        <form class="search" method="get" hx-get="/" hx-target="#grid" hx-push-url="true"
-            hx-trigger="submit, keyup changed delay:350ms from:#q">
-
+        <!-- Search -->
+        <form class="search" method="get" action="{{ url_for('home') }}" hx-get="{{ url_for('home') }}"
+            hx-target="#grid" hx-push-url="true" hx-trigger="submit, keyup changed delay:350ms from:#q">
             <span class="icon">⌘K</span>
-
             <input id="q" name="q" type="search" placeholder="Search title, prompt, tags…" autocomplete="off" />
-
-            <!-- hidden real submit so Enter works everywhere -->
-            <button type="submit" class="sr-only" aria-hidden="true" tabindex="-1">Search</button>
-
-            <button type="button" id="voice" title="Voice search">🎤</button>
+            <button type="submit" class="btn ghost" title="Search">Search</button>
+            <button type="button" id="voice" class="icon" title="Voice search">🎤</button>
         </form>
 
-        <button class="btn-shuffle" hx-get="/?shuffle=1" hx-target="#grid" hx-push-url="true"
-            title="Shuffle (random order)">🔀 Shuffle</button>
+        <!-- Shuffle -->
+        <a class="btn-shuffle" href="{{ url_for('home', shuffle=1) }}" hx-get="{{ url_for('home', shuffle=1) }}"
+            hx-target="#grid" hx-push-url="true" title="Shuffle (random order)">🔀 Shuffle</a>
     </header>
 
     <main class="shell">
         <section id="grid">
-            {% block grid %}
-            {% include "_cards.html" %}
-            {% endblock %}
+            {% block grid %}{% include "_cards.html" %}{% endblock %}
         </section>
     </main>
 
-    <!-- Modal (popup) -->
+    <!-- Modal -->
     <div id="modal" class="modal hidden" aria-hidden="true">
         <div class="overlay" data-close-modal></div>
         <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modal-title" tabindex="-1">
             <button class="modal-close" data-close-modal aria-label="Close">✕</button>
-            <div id="modal-body"><!-- recipe content loads here --></div>
+            <div id="modal-body"></div>
         </div>
     </div>
 
-    <!-- Optional: tiny About pill (bottom-left) -->
+    <!-- About -->
     <button id="aboutBtn" class="about-pill" aria-haspopup="dialog" title="About">About</button>
-
-    <!-- About sheet (reuses your modal look) -->
     <div id="aboutModal" class="modal hidden">
         <div class="overlay" data-close-modal></div>
         <div class="modal-card modal-panel" role="dialog" aria-modal="true" style="max-width:580px">
             <button class="modal-close" data-close-modal>✕</button>
             <h2>About this gallery</h2>
             <p class="dim">
-                AI-generated images created by Irini. Prompts, seeds and models are shown per image.
-                Please ask before reusing the images commercially — inspiration is welcome, attribution appreciated. 💛
+                AI-generated images by Irini. Prompts, seeds and models per image.
+                Please ask before commercial reuse — attribution appreciated. 💛
             </p>
-            <p class="dim">Code: Flask + HTMX. Repo: <a href="https://github.com/irinaholler/Promptfolio"
-                    target="_blank" rel="noreferrer">Promptfolio</a>.</p>
+            <p class="dim">
+                Code: Flask + HTMX · Repo:
+                <a href="https://github.com/irinaholler/Promptfolio" target="_blank" rel="noreferrer">Promptfolio</a>
+            </p>
         </div>
     </div>
 
@@ -85,9 +79,6 @@
             <path d="M5 12l7-7 7 7"></path>
         </svg>
     </button>
-
-    <script src="{{ url_for('static', filename='script.js') }}" defer></script>
-
 </body>
 
 </html>
