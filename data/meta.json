@@ -748,5 +748,59 @@
       "day vs night",
       "nonagram-like"
     ]
+  },
+  "gemini-2.5_photography_collage_Polaroid-style_photographs-1.jpg": {
+    "title": "Backstage Polaroids",
+    "prompt": "Nine Polaroid-style photos of Corey Taylor arranged on a dark textured wall; each slightly tilted and fixed with masking tape, paperclips, or safety pins. Handwritten captions like ‘Köln ’23’, ‘Acoustic’, ‘Q&A’, ‘Backstage’, ‘RamR 2024’, ‘Hamburg ’23’. Add small tour stickers, a Slipknot wristband, and band pins. Warm, rich colors with moody contrast; nostalgic backstage vibe, light film grain. No logos.",
+    "negative": "blurry, low-res, extra hands, warped perspective, heavy watermark, text artifacts, real brand logos",
+    "model": "Gemini 2.5",
+    "preset": "Photography / Collage",
+    "tags": [
+      "collage",
+      "polaroid",
+      "Corey Taylor",
+      "backstage",
+      "tape",
+      "pins",
+      "tour stickers",
+      "moody",
+      "concert",
+      "live"
+    ]
+  },
+  "Lucid_Origin_a_cinematic_photo_powerful.jpg": {
+    "title": "Coffeeborn Goddess",
+    "prompt": "Full-body goddess reborn from the ocean at sunset, waist-deep in glowing waves that dissolve into golden data particles and cosmic swirls. Radiant face with high cheekbones, deep khaki-green eyes, long black curled lashes; brunette bob with sun-kissed golden highlights. She holds a delicate cup of coffee, the last drop shimmering like liquid fire. Serene, confident pose; body glowing with inner light; elegant dress woven from water, light, and energy. Sky blazing gold, amber, magenta, deep violet. Hyper-detailed, cinematic digital painting, 9:16.",
+    "negative": "blurry, low-res, extra limbs, deformed hands, text, logos, watermark, plastic skin, oversharpening, HDR halos",
+    "model": "Gemini 2.5",
+    "preset": "Cinematic / Digital Painting",
+    "tags": [
+      "goddess",
+      "coffee",
+      "rebirth",
+      "ocean",
+      "sunset",
+      "particles",
+      "cosmic",
+      "digital painting",
+      "cinematic",
+      "art"
+    ]
+  },
+  "CTG_02.jpg": {
+    "title": "Corey/Knot: Split Signal",
+    "prompt": "Split portrait: left—Corey Taylor unmasked, magenta backdrop, mid-shout with mic and tattoos; right—Slipknot persona in green stage light, red jumpsuit, kneeling with raised fist. Hard vertical seam through center, concert grit, high contrast, crisp textures. No text or logos in-frame.",
+    "model": "—",
+    "preset": "Photoshop Composite",
+    "tags": [
+      "Corey Taylor",
+      "Slipknot",
+      "split",
+      "concert",
+      "portrait",
+      "green",
+      "magenta",
+      "photoshop"
+    ]
   }
 }

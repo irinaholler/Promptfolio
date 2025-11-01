@@ -2,21 +2,42 @@
 const $ = (sel, root = document) => root.querySelector(sel);
 document.documentElement.classList.add('js');
 
+/* Base-path helper: works at / and at /Promptfolio */
+const BASE = (() => {
+    // first segment, e.g. "/Promptfolio" or null if "/"
+    const m = location.pathname.match(/^\/[^/]+/);
+    // ignore if we're already at root or in /static
+    if (!m || m[0] === '/static') return '';
+    return m[0] === '/' ? '' : m[0];
+})();
+const url = (p) => BASE + p; // joiner
+
 /* ------------------ LIKE + COPY ------------------ */
 document.addEventListener("click", async (e) => {
     // Like button (stop bubbling so the card doesn't open the modal)
     const likeBtn = e.target.closest(".like");
     if (likeBtn) {
         e.stopPropagation();
+
+        // Prefer server-generated URL; fallback to base + id
+        const explicitUrl = likeBtn.dataset.likeUrl;
         const id = likeBtn.dataset.id;
-        const key = "liked-" + id;
+        const api = explicitUrl || (id ? url(`/like/${id}`) : null);
+
+        if (!api) {
+            console.error("Like failed: no URL or id on button", likeBtn);
+            return;
+        }
+
+        const key = "liked-" + (id || api);
         if (localStorage.getItem(key)) return;
+
         try {
-            const res = await fetch(`/like/${id}`, { method: "POST" });
+            const res = await fetch(api, { method: "POST" });
+            if (!res.ok) throw new Error(await res.text());
             const data = await res.json();
             likeBtn.querySelector("span").textContent = data.likes;
             localStorage.setItem(key, "1");
-            // subtle pulse
             likeBtn.classList.add("liked");
             setTimeout(() => likeBtn.classList.remove("liked"), 250);
         } catch (err) {
@@ -72,7 +93,6 @@ function attachCardObservers() {
         }
         cards.forEach((c) => io.observe(c));
     }
-    // Force visible to avoid Safari column/observer glitches
     requestAnimationFrame(() => cards.forEach((c) => c.classList.add("reveal")));
 }
 window.addEventListener("DOMContentLoaded", attachCardObservers);
@@ -86,10 +106,7 @@ document.addEventListener("keydown", (e) => {
     if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
         e.preventDefault();
         const q = document.getElementById("q");
-        if (q) {
-            q.focus();
-            q.select();
-        }
+        if (q) { q.focus(); q.select(); }
     }
 });
 
@@ -103,27 +120,15 @@ function closeModal() {
     modal.classList.add("hidden");
     document.documentElement.style.overflow = "";
 }
-
-// Open modal ONLY when clicking the card image/overlay (not tags/likes)
 document.addEventListener("click", (e) => {
-    // ignore clicks on tag chips or links inside meta
     if (e.target.closest(".pill, .pills, .meta-row a, .like")) return;
-
     const card = e.target.closest("[data-open-modal]");
-    if (card) {
-        openModal(); // HTMX will load #modal-body
-    }
-
-    // close on overlay / close button
+    if (card) openModal();
     if (e.target.matches("[data-close-modal]")) closeModal();
 });
-
-// Close with Escape
 document.addEventListener("keydown", (e) => {
     if (e.key === "Escape" && !modal.classList.contains("hidden")) closeModal();
 });
-
-// When recipe content arrives, make prompt collapsed by default and focus dialog
 document.body.addEventListener("htmx:afterSwap", (ev) => {
     if (ev.target.id === "modal-body") {
         const p = document.querySelector("#prompt-block");
@@ -132,8 +137,6 @@ document.body.addEventListener("htmx:afterSwap", (ev) => {
         if (card) card.focus({ preventScroll: true });
     }
 });
-
-// Prompt show more/less (no scrollbar)
 document.addEventListener("click", (e) => {
     const t = e.target.closest(".toggle");
     if (!t) return;
@@ -156,11 +159,10 @@ document.addEventListener("click", (e) => {
 /* ------------------ SHUFFLE (R key) ------------------ */
 document.addEventListener("keydown", (e) => {
     if (e.key.toLowerCase() === "r" && document.activeElement.tagName !== "INPUT") {
-        if (window.htmx) {
-            htmx.ajax("GET", "/?shuffle=1&_=" + Date.now(), "#grid");
-        } else {
-            location.href = "/?shuffle=1&_=" + Date.now();
-        }
+        const target = "#grid";
+        const q = `/?shuffle=1&_=${Date.now()}`;
+        if (window.htmx) htmx.ajax("GET", url(q), target);
+        else location.href = url(q);
     }
 });
 
@@ -183,73 +185,45 @@ if (aboutBtn && aboutModal) {
 /* ------------------ SEARCH: CLEAR (×) RESETS GRID ------------------ */
 const searchBox = document.querySelector('input[type="search"]');
 if (searchBox) {
-    // Fires on Safari/iOS when the native clear (×) is tapped
     searchBox.addEventListener("search", () => {
         if (searchBox.value === "") {
-            if (window.htmx) {
-                htmx.ajax("GET", "/?shuffle=1&_=" + Date.now(), "#grid");
-            } else {
-                window.location.assign("/?shuffle=1");
-            }
+            const target = "#grid";
+            const q = `/?shuffle=1&_=${Date.now()}`;
+            if (window.htmx) htmx.ajax("GET", url(q), target);
+            else window.location.assign(url("/?shuffle=1"));
         }
     });
 }
 
-/* ------------------ BACK TO TOP — final, robust ------------------ */
-/* ------------------ BACK TO TOP — scroll ALL scrollables ------------------ */
+/* ------------------ BACK TO TOP ------------------ */
 (function () {
     const btn = document.getElementById('toTop');
     if (!btn) return;
-
-    // Make sure it's clickable/visible
     btn.classList.add('show');
 
-    // The robust scroller: page + any scrollable panels
     function scrollAllToTop() {
-        const roots = [
-            document.scrollingElement || document.documentElement,
-            document.body
-        ];
-
+        const roots = [document.scrollingElement || document.documentElement, document.body];
         const panels = Array.from(document.querySelectorAll('*')).filter(el => {
-            // skip the button itself
             if (el === btn) return false;
             const cs = getComputedStyle(el);
             const canScroll = /(auto|scroll|overlay)/.test(cs.overflowY);
             return canScroll && el.scrollHeight > el.clientHeight;
         });
-
         const targets = [...new Set([...roots, ...panels])];
-
         targets.forEach(el => {
-            try {
-                el.scrollTo({ top: 0, behavior: 'smooth' });
-            } catch {
-                el.scrollTop = 0;
-            }
+            try { el.scrollTo({ top: 0, behavior: 'smooth' }); }
+            catch { el.scrollTop = 0; }
         });
-
-        // As a last resort, also ask the window to scroll
         if ('scrollTo' in window) window.scrollTo({ top: 0, behavior: 'smooth' });
         else window.scrollTo(0, 0);
     }
 
-    // Click handler on the button
-    btn.addEventListener('click', e => {
-        e.preventDefault();
-        e.stopPropagation();
-        scrollAllToTop();
-    });
-
-    // Also catch any element that uses data-scroll-top (future-proof)
+    btn.addEventListener('click', e => { e.preventDefault(); e.stopPropagation(); scrollAllToTop(); });
     document.addEventListener('click', e => {
-        const t = e.target.closest('[data-scroll-top]');
-        if (!t) return;
-        e.preventDefault();
-        scrollAllToTop();
+        const t = e.target.closest('[data-scroll-top]'); if (!t) return;
+        e.preventDefault(); scrollAllToTop();
     });
 
-    // Keep a gentle fade near the top
     const soften = () => { btn.style.opacity = (window.scrollY < 40) ? '0.9' : '1'; };
     soften();
     window.addEventListener('scroll', soften, { passive: true });
