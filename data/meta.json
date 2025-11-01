@@ -596,5 +596,59 @@
       "close-up",
       "photo"
     ]
+  },
+  "gemini-2.5-painting-02.jpg": {
+    "title": "Curator of Chaos Room 8",
+    "prompt": "Photorealistic museum, deep-teal wall, oak herringbone floor, soft track lights. Center gold baroque frame. In-frame: dark moody oil of hunched figure in red work jumpsuit with rope mask, matte textures, soft background. Left of frame: full-body viewer from behind in matching red jumpsuit (barcode, 8), black skate sneakers. Clean shadows, label plate, no crowd.",
+    "model": "Gemini 2.5",
+    "preset": "Photoreal",
+    "tags": [
+      "museum",
+      "baroque frame",
+      "red jumpsuit",
+      "rope mask",
+      "photoreal",
+      "moody"
+    ]
+  },
+  "Flux_Dev_CTG_board_1.jpg": {
+    "title": "Ragged “S” Cutout",
+    "prompt": "Photoreal collage on a dark mounting board: torn matte papers and tracing paper, fixed with tape and staples. Centerpiece: a large S-shaped cutout with a ragged “eaten” edge—perforations, tiny splatter holes, chunky mid-curve, tapered ends, slight diagonal lean. Blank window over deep-red matte backing (no content inside). Micro-fibers, glue ridges, a faint coffee ring, blueprint grid hints, subtle red thread stitches. Studio grazing light, shallow DOF, cinematic contrast, ultra-real textures.",
+    "model": "Leonardo Phoenix 1.0",
+    "preset": "Cinematic",
+    "tags": ["collage", "Slipknot", "red", "band", "music", "art", "mask"]
+  },
+  "CTG_10.jpg": {
+    "title": "King of Spades",
+    "prompt": "Vintage playing-card portrait split warm/cool: Corey Taylor crowned on the top half, mirrored Slipknot stage persona below. Ornate border, subtle paper grain, casino-deck motifs, teal–amber palette, dramatic studio light.",
+    "model": "Photoshop/Compositing",
+    "preset": "Poster / Card Design",
+    "tags": [
+      "Corey Taylor",
+      "Slipknot",
+      "playing card",
+      "king of spades",
+      "portrait",
+      "music",
+      "poster",
+      "art",
+      "amber",
+      "collage"
+    ]
+  },
+  "Flux_Dev_acrylic_painting_Portrait_1.jpg": {
+    "title": "Neon Groove Portrait",
+    "prompt": "Bold acrylic portrait in neon cyan/amber/magenta. Concentric vinyl-record grooves across the canvas, light dust specks, textured brushwork, close-up upward gaze, high contrast. No text or logos.",
+    "model": "Flux Dev",
+    "preset": "Acrylic / Neon",
+    "tags": [
+      "portrait",
+      "vinyl",
+      "acryl",
+      "neon",
+      "music",
+      "grooves",
+      "poster art"
+    ]
   }
 }
