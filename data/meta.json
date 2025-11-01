@@ -650,5 +650,52 @@
       "grooves",
       "poster art"
     ]
+  },
+  "Lucid_Origin_A_moody_rock_metal_poster_1.jpg": {
+    "title": "Moody cinematic metal portrait — high-detail realism, rich fabric texture, dramatic contrast, volumetric dust, HDR, soft vignette, crisp detail.",
+    "model": "Flux Dev",
+    "preset": "Cinematic",
+    "tags": [
+      "portrait",
+      "metal",
+      "moody",
+      "dark",
+      "cinematic",
+      "rain",
+      "art",
+      "realism"
+    ]
+  },
+  "Lucid_Origin_exquisite_1.jpg": {
+    "title": "Baroque Salon, 1697",
+    "prompt": "Cinematic Baroque salon: Slipknot-styled gentlemen in 17th-century attire around a porcelain coffee set; warm candlelight, ornate wood, paintings, fireplace, refined mood, historical realism. No text or logos.",
+    "model": "Flux Dev",
+    "preset": "Cinematic",
+    "tags": [
+      "baroque",
+      "slipknot",
+      "portrait",
+      "coffee",
+      "candlelight",
+      "historical",
+      "museum"
+    ]
+  },
+  "Lucid_Origin_artistic_portrait_1.jpg": {
+    "title": "Curator of Noise",
+    "prompt": "Cinematic museum hallway with gilded frames and warm sconces, herringbone parquet. Long-haired fan in denim vest and black jeans holds a large framed Slipknot poster. Shallow depth, soft film grain, realistic textures, warm amber light. No extra text or logos.",
+    "model": "Gemini 2.5",
+    "preset": "Cinematic / Photoreal",
+    "tags": [
+      "museum",
+      "portrait",
+      "Slipknot",
+      "gallery",
+      "poster",
+      "cinematic",
+      "moody",
+      "denim",
+      "herringbone"
+    ]
   }
 }

@@ -213,3 +213,40 @@ No redistribution, resale, or inclusion in datasets/models without permission.
 
 Built with ❤️ using Flask, HTMX, and a sprinkle of tasteful CSS.
 Design language inspired by cinematic UI, glass surfaces, and your own AI artworks.
+
+python app.py  
+git push origin master
+
+# Pushed to GitHub
+
+cd ~/Promptfolio
+git pull --rebase origin master
+
+python - <<'PY'
+from app import app, \_ingest_run
+with app.app_context():
+print("INGEST:", \*\_ingest_run())
+PY
+
+# On PythonAnywhere
+
+cd ~/Promptfolio
+git fetch origin
+
+# overwrite working tree with GitHub's master
+
+git reset --hard origin/master
+
+# sanity: do you see your new images now?
+
+ls -1 static/images | tail -n 20
+
+git pull origin master
+
+source venv/bin/activate
+python - <<'PY'
+from app import app,\_ingest_run
+with app.app_context():
+a,u=\_ingest_run()
+print("INGEST:", a, "added,", u, "updated")
+PY
