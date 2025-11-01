@@ -214,6 +214,23 @@ No redistribution, resale, or inclusion in datasets/models without permission.
 Built with ❤️ using Flask, HTMX, and a sprinkle of tasteful CSS.
 Design language inspired by cinematic UI, glass surfaces, and your own AI artworks.
 
+Re-ingest (so the DB learns about it)
+Localhost
+
+# from your project root
+
+source venv/bin/activate # or .venv/bin/activate
+python - <<'PY'
+from app import app, \_ingest_run
+with app.app_context():
+a,u=\_ingest_run()
+print("INGEST:", a, "added,", u, "updated")
+PY
+
+# then run your app if needed:
+
+flask --app app run --debug
+
 python app.py  
 git push origin master
 
