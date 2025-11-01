@@ -1,7 +1,7 @@
 {
   "Lucid_Origin_Cake.jpg": {
     "title": "Bundt Cake",
-    "prompt": "Ultra-realistic food photography of homemade bundt cake slices on rustic elegant wooden farmhouse table. Professional commercial shot featuring artisanal ring cake with golden crumb texture and powdered sugar coating, cut into three generous portions on vintage ceramic plate with delicate blue floral rim pattern. Atmospheric natural lighting creating sunny shadows and warm highlights across weathered wood grain surface. Scene includes fresh antique cup with silver spoon of delicious cappuccino with condensation, 3 strawberries and one halved eaten strawberry showing sweet segments, metal grater, dark chocolate bar pieces. Sage green linen napkin adds textile contrast. Very spall part of an old book is on the table to see. Vintage wooden chair softly blurred in background. Moody chiaroscuro lighting effect from window creates cozy domestic atmosphere. Shallow depth of field emphasizes foreground cake details while maintaining bokeh background. Rich warm color palette of golden browns, creamy whites, muted blues. High-end stock photography composition following rule of thirds. Ultra-detailed textures showing cake crumbs, fabric weave patterns, wood planks grain, ceramic glaze reflections. Professional studio lighting mimicking golden hour ambiance for maximum commercial appeal and marketability on stock platforms.",
+    "prompt": "Ultra-realistic food photo: homemade bundt cake slices with golden crumb and powdered sugar on a vintage ceramic plate (blue floral rim) atop a rustic wooden farmhouse table. Natural window light with moody chiaroscuro; warm highlights and long, sunny shadows. Beside them: a cappuccino in an antique cup with silver spoon (faint condensation), three strawberries plus one halved, a small metal grater, and dark-chocolate pieces. Sage-green linen napkin, a tiny corner of an old book, and a softly blurred vintage chair in the background. Shallow depth of field (85 mm look, f/2), rich warm palette (golden browns, creamy whites, muted blues), crisp micro-textures (crumbs, fabric weave, wood grain, ceramic glaze).",
     "model": "Leonardo Lucid Origin",
     "seed": "786001560",
     "preset": "Creative",
@@ -553,7 +553,6 @@
     "title": "Metal Stage Cake",
     "prompt": "On a dimly lit rock stage, a three-tier matte-black fondant cake with glossy black ganache drips sits on a rugged road case, a strawberry covered in chocolate. Edible heavy-metal details: brushed-metal (edible) spikes and studs, thin sugar chains wrapping each tier, tiny fondant skulls, scattered sugar guitar picks, dark melting down chocolate and a crackled tempered-sugar lightning-bolt topper with silver-leaf edges. A single slice is lifted on a matte-black server, revealing deep cocoa sponge with dark velvet ganache layers. A single slice has been lifted, revealing rich, velvety ganache and feather-light chocolate sponge swirled in an elegant spiral. Soft stage lighting: warm tungsten key from stage left, cool cyan rim/backlights cutting through light haze so beams are visible; subtle bokeh of truss, amps, and cables in the background (no logos). Textures ultra-real: satin fondant, glossy drips, metallic sheen on edible hardware. Mood: bold, heavy-metal glamour yet elegant. Shallow depth (f/1.8, 85 mm look), high dynamic range, gentle film grain, cinematic color grade.",
     "model": "Leonardo Flux Dev",
-    "seed": "1983862411",
     "preset": "Dynamic",
     "tags": [
       "metal",
@@ -577,7 +576,6 @@
     "title": "Share a Sip with Corey",
     "prompt": "Ultra-realistic close-up product photography. A cold red cola can sits next to a transparent glass stacked with glossy ice cubes. The can is covered in dew drops and condensation, with bold silver letters reading: 'Share a sip with COREY TAYLOR'. The background is a warmly lit bar with rows of blurred colorful liquor bottles, creating a cozy evening atmosphere. The wooden table reflects the light softly, and the ice shimmers with clarity. Bokeh effect in the background, with warm contrast and commercial lighting, like a high-end beverage ad.",
     "model": "ChatGPT Flux Dev",
-    "seed": "4029809941",
     "preset": "Photoreal Studio",
     "tags": [
       "corey-taylor",
@@ -600,7 +598,7 @@
   "gemini-2.5-painting-02.jpg": {
     "title": "Curator of Chaos Room 8",
     "prompt": "Photorealistic museum, deep-teal wall, oak herringbone floor, soft track lights. Center gold baroque frame. In-frame: dark moody oil of hunched figure in red work jumpsuit with rope mask, matte textures, soft background. Left of frame: full-body viewer from behind in matching red jumpsuit (barcode, 8), black skate sneakers. Clean shadows, label plate, no crowd.",
-    "model": "Gemini 2.5",
+    "model": "Gemini 2.5 / Photoshop",
     "preset": "Photoreal",
     "tags": [
       "museum",
@@ -614,7 +612,7 @@
   "Flux_Dev_CTG_board_1.jpg": {
     "title": "Ragged “S” Cutout",
     "prompt": "Photoreal collage on a dark mounting board: torn matte papers and tracing paper, fixed with tape and staples. Centerpiece: a large S-shaped cutout with a ragged “eaten” edge—perforations, tiny splatter holes, chunky mid-curve, tapered ends, slight diagonal lean. Blank window over deep-red matte backing (no content inside). Micro-fibers, glue ridges, a faint coffee ring, blueprint grid hints, subtle red thread stitches. Studio grazing light, shallow DOF, cinematic contrast, ultra-real textures.",
-    "model": "Leonardo Phoenix 1.0",
+    "model": "Leonardo Phoenix 1.0 / Photoshop",
     "preset": "Cinematic",
     "tags": ["collage", "Slipknot", "red", "band", "music", "art", "mask"]
   },
@@ -669,7 +667,7 @@
   "Lucid_Origin_exquisite_1.jpg": {
     "title": "Baroque Salon, 1697",
     "prompt": "Cinematic Baroque salon: Slipknot-styled gentlemen in 17th-century attire around a porcelain coffee set; warm candlelight, ornate wood, paintings, fireplace, refined mood, historical realism. No text or logos.",
-    "model": "Flux Dev",
+    "model": "Flux Dev Photoshop",
     "preset": "Cinematic",
     "tags": [
       "baroque",
@@ -684,7 +682,7 @@
   "Lucid_Origin_artistic_portrait_1.jpg": {
     "title": "Curator of Noise",
     "prompt": "Cinematic museum hallway with gilded frames and warm sconces, herringbone parquet. Long-haired fan in denim vest and black jeans holds a large framed Slipknot poster. Shallow depth, soft film grain, realistic textures, warm amber light. No extra text or logos.",
-    "model": "Gemini 2.5",
+    "model": "Gemini 2.5 / Photoshop",
     "preset": "Cinematic / Photoreal",
     "tags": [
       "museum",
@@ -696,6 +694,59 @@
       "moody",
       "denim",
       "herringbone"
+    ]
+  },
+  "Leonardo_Phoenix_A_surreal_painting_man_1.jpg": {
+    "title": "Quiet Room, Loud Mind",
+    "prompt": "Surreal, ultra-detailed scene: a lone man in a decaying purple room sits with fingers pressed into his eyes; violet energy/veins pulse across his arms and chest. Torn pages, scratched lyrics, cracked walls, tilted vintage band posters floating mid-air; broken mirrors with distorted reflections. A blue electric guitar on rubble beside chaotic ‘truth’ scrawl (unreadable). Shattered ceiling with a blinding shaft of light; cinematic chiaroscuro, gritty textures, emotional concept-art mood; Slipknot-inspired intensity.",
+    "negative": "extra people, readable text, real band logos, watermarks, over-smoothing, plastic skin, oversaturated neon, deformed hands",
+    "model": "Leonardo Phoenix / Photoshop",
+    "preset": "Surreal / Chiaroscuro",
+    "tags": [
+      "surreal",
+      "digital painting",
+      "concept art",
+      "purple",
+      "chiaroscuro",
+      "emotional",
+      "Slipknot-inspired",
+      "psychological",
+      "moody"
+    ]
+  },
+  "Lucid_Origin_Whimsical_fairytale_tower_cafe.jpg": {
+    "title": "Fairytale Café Tower",
+    "prompt": "Whimsical fairytale tower turned into a cozy café. Daytime with bright blue sky and fluffy white clouds. Colorful rooftops, flowers along spiral stairs, a welcoming 'Café' sign. Outdoor tables, warm sunlight, blooming planters, inviting entrance. Style: magical, fantasy illustration, cheerful, storybook art. High detail, soft textures, gentle lighting.",
+    "model": "Gemini 2.5",
+    "preset": "Storybook / Fantasy",
+    "tags": [
+      "fantasy",
+      "whimsical",
+      "storybook",
+      "cafe",
+      "tower",
+      "flowers",
+      "blue sky",
+      "cheerful",
+      "illustration"
+    ]
+  },
+  "Lucid_Origin_Fullbody_split_scene.jpg": {
+    "title": "Duality Rift",
+    "prompt": "Full-body split scene of a man facing himself. Left (Calm): unmasked, relaxed stance in a dark hoodie, bathed in golden yellow–orange glow with soft rim light, warm dust motes, gentle sparkle. Right (Wild): in a Slipknot mask, aggressive posture, wrapped in deep red grunge energy (sparks, ash, torn fabric wisps), faint stage-smoke, stormy night sky. Between them: a vertical rift of cracked light separating day from night; both reach toward it, hands almost touching, the sun between them. Epic cinematic landscape, low-angle 24–35mm feel, volumetric lighting, long grass foreground, dramatic warm clouds left vs. starry gloom right. Above the rift, a subtle arc of small glyphs (nonagram-like sigil, lightning, microphone, heart) glowing faintly—tasteful, minimal. Ultra-detailed, high contrast, crisp textures, filmic depth of field, particles, dynamic shadows, heavy metal mood, no band logos or readable text.",
+    "negative": "blurry, low-res, extra fingers, extra limbs, warped anatomy, banding, heavy watermark, text artifacts, real logos",
+    "model": "Gemini 2.5",
+    "preset": "Cinematic / Concept Art",
+    "tags": [
+      "minimal",
+      "duality",
+      "split scene",
+      "cinematic",
+      "concept art",
+      "grunge",
+      "volumetric light",
+      "day vs night",
+      "nonagram-like"
     ]
   }
 }
