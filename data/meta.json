@@ -802,5 +802,57 @@
       "magenta",
       "photoshop"
     ]
+  },
+  "Zodiac-DM_ECounts.jpg": {
+    "title": "Everything Counts — The Narrow Crossing",
+    "prompt": "Cinematic, blue-hour mountain ravine with brutalist scaffolds and exposed gear wheels carved into the rock; snow flecks and metal catwalks fading into mist. Foreground: a lone worker/silhouette in helmet and parka stepping across a narrow gap between jagged ledges, rope in hand; backlit by a pale orange slit of sunset beyond the valley. Subtle symbolism of tally marks etched in the rock, faint abacus-like shadows from ladder rungs, and distant conveyor silhouettes—quiet commentary on cost, scale, and extraction. High contrast, crisp textures, soft haze, natural color grade; realistic photography look; 9:16 vertical. Negative: text, logos, neon colors, glossy HDR, extra people.",
+    "model": "Grok ai",
+    "preset": "Industrial Cinematic Composite",
+    "tags": [
+      "Depeche Mode",
+      "Everything Counts",
+      "industrial",
+      "gears",
+      "blue hour",
+      "mountain",
+      "symbolism",
+      "photoreal",
+      "music"
+    ]
+  },
+  "Zodiac-Metallica_JFA.jpg": {
+    "title": "Libra",
+    "prompt": "Classical marble statue of Justitia in a quiet museum hall; soft teal backdrop, diffused top light. She holds balanced scales made from vintage black vinyl records with pale-green labels; ropes and aged brass arms. Subtle gold kintsugi cracks across the drapery and torso; calm, dignified pose on a stone plinth. Mood: solemn, elegant, symbolic of judgment and balance. Photoreal clarity, fine fabric folds, natural shadows, 9:16 vertical. Negative: text/logos, extra people, neon colors, HDR gloss.",
+    "model": "Flux Dev",
+    "preset": "Creative",
+    "tags": [
+      "Metallica",
+      "And Justice for All",
+      "Libra",
+      "zodiac",
+      "imagine",
+      "scales",
+      "vinyl",
+      "photoreal",
+      "music"
+    ]
+  },
+  "Zodiac-Metallica_FTB.jpg": {
+    "title": "Capricorn",
+    "prompt": "Moody alpine pass under a heavy sky; a monumental iron frame with horned brackets holds a cracked, weathered bell in extreme low-angle view. Patina, rust freckles, and kintsugi-like fissures across the bell; thick chain and clapper centered. Far below, a lone, coat-clad figure stands soft-focused among dark firs and slate hills. Atmosphere: cold blue-grey mist, breath of wind, tension right before the strike—endurance, time, gravity. Photoreal clarity, shallow depth of field, natural film grain, 9:16 vertical. Negative: text/logos, neon, crowds, glossy HDR, extra people.",
+    "model": "Flux Dev",
+    "preset": "Industrial Cinematic Composite",
+    "tags": [
+      "Metallica",
+      "For Whom the Bell Tolls",
+      "Capricorn",
+      "zodiac",
+      "bell",
+      "horns",
+      "fog",
+      "mountain",
+      "photoreal",
+      "music"
+    ]
   }
 }
