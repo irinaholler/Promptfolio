@@ -219,12 +219,12 @@ Localhost
 
 # from your project root
 
-source ~/Promptfolio/venv/bin/activate
 python - <<'PY'
-from app import app,\_ingest_run
+from app import app, \_ingest_run
+
 with app.app_context():
-a,u=\_ingest_run()
-print("INGEST:", a, "added,", u, "updated")
+added, updated = \_ingest_run()
+print(f"INGEST: {added} added, {updated} updated")
 PY
 
 # then run your app if needed:
